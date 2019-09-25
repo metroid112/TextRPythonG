@@ -106,8 +106,8 @@ def main():
                 current_ui_speed = 0
             else:
                 combat_end = False
+                goblin = random_enemy()
                 while not combat_end:
-                    goblin = random_enemy()
 
                     if goblin.current_hp == 0 or current_character.hp == 0:
                         combat_end = True
