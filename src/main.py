@@ -125,20 +125,26 @@ def main():
                     print_ui(f'Name: {character_name}')
                 else:
                     character_name = get_input('Name:')
+                
+                if character_name.strip() != '':
+                    current_ui = 3
+                    print_menu()
 
-                current_ui = 3
-                print_menu()
-                try:
-                    character_class = int(get_input('Class:'))
-                except ValueError:
-                    input('Please enter a valid option. Press Enter key to continue')
+                    try:
+                        character_class = int(get_input('Class:'))
+                    except ValueError:
+                        input('Please enter a valid option. Press Enter key to continue')
 
-                if character_class is not None and character_name is not None:
-                    new_character = Player(character_name, character_class)
-                    new_character.resolve_class_attributes()
-                    characters.append(new_character)
-                    current_ui = 1
-                    refresh_ui()
+                    if character_class in player_classes:
+                        new_character = Player(character_name, character_class)
+                        new_character.resolve_class_attributes()
+                        characters.append(new_character)
+                        current_ui = 1
+                        refresh_ui()
+                    else:
+                        input('Please enter a valid option. Press Enter key to continue')
+                else:
+                    input('Please enter a valid name. Press Enter key to continue')
         elif option == '3':
             exit()
         else:
